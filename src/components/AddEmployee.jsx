@@ -14,6 +14,29 @@ const AddEmployee = () => {
         setEmployee({...employee,[e.target.name] : value})
     }
 
+    const save = () =>{
+        e.preventDefault();
+        EmployeeService.saveEmployee(employee)
+        .then(response=>{
+            console.log(response);
+            navigate("/employeeList");
+        })
+        .catch(error=> {
+            console.log(error);
+        })
+    }
+
+    const reset = (e) =>{
+        e.preventDefault();//butona basanda sehife reload olmur
+        setEmployee({
+            id:"",
+            firstName:"",
+            lastName:"",
+            email:""
+
+        })
+    }
+
     return (
         <div className='flex max-w-2xl mx-auto shadow border-b'>
             <div className='px-8 py-8'>
